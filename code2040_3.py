@@ -28,26 +28,21 @@ def are_opposites(dir1, dir2):
 		return True if dir2 not in directions else False
 
 
+# Return the modified array, index, and check
 def checkDirs(arr, index, check):
 	if are_opposites(arr[index], arr[index+1]):
 		del arr[index] # [S][E][W][N]
-		del arr[index] # [E][W][N]	
+		del arr[index] # [E][W][N]
 		check = True
 
 	else:
-		if index == len(arr)-1:
-			# We must reset the array index until we are sure no more operations can be performed
-			if check:
-				solved = True
-			else: 
-				i = 0
-		else:
-			i += 1
+		index += 1
+	return (arr, index, check)
 
 def dirReduc(arr):
-	i = 0
+	index = 0
 	solved = False
-	opposite_check_true = 0
+	check = 0
 
 	# While zero modifications have been made to current instance of list
 	while solved == False:
@@ -55,10 +50,10 @@ def dirReduc(arr):
 		# print(arr[i])
 
 		# If loop has reached end of array
-		if i == len(arr)-1:
-			if opposite_check_true:
-				i = 0
-				opposite_check_true = False
+		if index == len(arr)-1:
+			if check:
+				index = 0
+				check = False
 			else:	
 				return arr
 		
@@ -68,38 +63,12 @@ def dirReduc(arr):
 
 		# [N][S][E][W][N]
 		# If next direction is not beyond the end of the list
-		elif i+1 < len(arr)-1:
-			if are_opposites(arr[i], arr[i+1]):
-				del arr[i] # [S][E][W][N]
-				del arr[i] # [E][W][N]	
-				opposite_check_true = True
-
-			else:
-				if i == len(arr)-1:
-					# We must reset the array index until we are sure no more operations can be performed
-					if opposite_check_true:
-						solved = True
-					else: 
-						i = 0
-				else:
-					i += 1
+		elif index+1 < len(arr)-1:
+			(arr, index, check) = checkDirs(arr, index, check)
 
 		# [S][N][W]
-		elif i+1 == len(arr)-1:
-			if are_opposites(arr[i], arr[i+1]):
-				del arr[i] # [N][W]
-				del arr[i] # [W]	
-				opposite_check_true = True
-
-			else:
-				if i == len(arr)-1:
-					# We must reset the array index until we are sure no more operations can be performed
-					if opposite_check_true:
-						solved = True
-					else: 
-						i = 0
-				else:
-					i += 1			
+		elif index+1 == len(arr)-1:
+			(arr, index, check) = checkDirs(arr, index, check)
 
 	return arr
 
