@@ -39,8 +39,8 @@ def dirReduc(arr):
 	# While zero modifications have been made to current instance of list
 	while solved == False:
 		arr_length = len(arr)-1
-		print(arr)
-		print(arr[i])
+		# print(arr)
+		# print(arr[i])
 
 		# If loop has reached end of array
 		if i == len(arr)-1:
@@ -57,44 +57,44 @@ def dirReduc(arr):
 		# [N][S][E][W][N]
 		# If next direction is not beyond the end of the list
 		elif i+1 < len(arr)-1:
-			print("NEXT 2: " + str(arr[i+1]))
+			# print("NEXT 2: " + str(arr[i+1]))
 			if are_opposites(arr[i], arr[i+1]):
 				del arr[i] # [S][E][W][N]
 				del arr[i] # [E][W][N]	
 				opposite_check_true = True
 
 			else:
-				print("AT END")
+				# print("AT END")
 				if i == len(arr)-1:
 					# We must reset the array index until we are sure no more operations can be performed
 					if opposite_check_true:
 						solved = True
 					else: 
-						print("RESET")
+						# print("RESET")
 						i = 0
 				else:
-					print("ADD 1")
+					# print("ADD 1")
 					i += 1
 
 		# [S][N][W]
 		elif i+1 == len(arr)-1:
-			print("B NEXT 2: " + str(arr[i+1]))
+			# print("B NEXT 2: " + str(arr[i+1]))
 			if are_opposites(arr[i], arr[i+1]):
 				del arr[i] # [N][W]
 				del arr[i] # [W]	
 				opposite_check_true = True
 
 			else:
-				print("B AT END")
+				# print("B AT END")
 				if i == len(arr)-1:
 					# We must reset the array index until we are sure no more operations can be performed
 					if opposite_check_true:
 						solved = True
 					else: 
-						print("B RESET")
+						# print("B RESET")
 						i = 0
 				else:
-					print("B ADD 1")
+					# print("B ADD 1")
 					i += 1			
 
 	return arr
@@ -105,7 +105,7 @@ def dirReduc(arr):
 
 print(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]))
 print(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]))
-print()
+# print()
 a = {'NORTH', 'SOUTH', 'EAST', 'WEST'}
 b = 'NORTH'
 
