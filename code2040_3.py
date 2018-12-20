@@ -33,36 +33,70 @@ def dirReduc(arr):
 	i = 0
 	new_arr = []
 	solved = False
-	arr_length = len(arr)
+	arr_length = 0
 	opposite_check_true = 0
 
 	# While zero modifications have been made to current instance of list
 	while solved == False:
-		
+		arr_length = len(arr)-1
+		print(arr)
+		print(arr[i])
+
 		# If loop has reached end of array
-		if i == arr_length-1:
-			return new_arr
+		if i == len(arr)-1:
+			if opposite_check_true:
+				i = 0
+				opposite_check_true = False
+			else:	
+				return arr
 		
 		# If array contains only one direction
-		if arr_length == 1:
+		if len(arr)-1 == 1:
 			return arr
 
+		# [N][S][E][W][N]
 		# If next direction is not beyond the end of the list
-		## [N][S][E][W][N]
-		elif i+1 < arr_length-1:
-			if are_opposites(arr[i], arr[i+1])
-				arr.remove(i)  ## [S][E][W][N]
-				arr.remove(i)  ## [E][W][N]	
-				opposite_check_true += 1
+		elif i+1 < len(arr)-1:
+			print("NEXT 2: " + str(arr[i+1]))
+			if are_opposites(arr[i], arr[i+1]):
+				del arr[i] # [S][E][W][N]
+				del arr[i] # [E][W][N]	
+				opposite_check_true = True
 
 			else:
-				new_arr.append(arr[i], arr[i+1])
-				if i == arr_length-1:
+				print("AT END")
+				if i == len(arr)-1:
 					# We must reset the array index until we are sure no more operations can be performed
-					if opposite_check_true == 0:
+					if opposite_check_true:
 						solved = True
 					else: 
+						print("RESET")
 						i = 0
+				else:
+					print("ADD 1")
+					i += 1
+
+		# [S][N][W]
+		elif i+1 == len(arr)-1:
+			print("B NEXT 2: " + str(arr[i+1]))
+			if are_opposites(arr[i], arr[i+1]):
+				del arr[i] # [N][W]
+				del arr[i] # [W]	
+				opposite_check_true = True
+
+			else:
+				print("B AT END")
+				if i == len(arr)-1:
+					# We must reset the array index until we are sure no more operations can be performed
+					if opposite_check_true:
+						solved = True
+					else: 
+						print("B RESET")
+						i = 0
+				else:
+					print("B ADD 1")
+					i += 1			
+
 	return arr
 
 ## [N][S][E][W][N][ ]
@@ -70,15 +104,17 @@ def dirReduc(arr):
 ## If zero modifications have been made to list, the answer is correct
 
 print(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]))
+print(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]))
+print()
 a = {'NORTH', 'SOUTH', 'EAST', 'WEST'}
 b = 'NORTH'
 
-print(type(a.add(a.remove('SOUTH'))))
-print(a)
-if b in a:
-	print("TRUEEEEE")
-else:
-	print("FALSE SIR")
+# print(type(a.add(a.remove('SOUTH'))))
+# print(a)
+# if b in a:
+# 	print("TRUEEEEE")
+# else:
+# 	print("FALSE SIR")
 
 
 
