@@ -65,42 +65,6 @@ def dirReduc(arr):
 						i = 0
 	return arr
 
-# def dirReduc(arr):
-# 	output = ""
-# 	# solved = None
-# 	i = 0
-# 	arr_length = len(arr)
-# 	new_arr = []
-# 	solved = False
-# 	opposite_check_true = 0
-
-# 	# While zero modifications have been made to current instance of list
-# 	while solved == False:
-# 		# If loop has reached end of array
-# 		if i == arr_length-1:
-# 			return new_arr
-		
-# 		# If array contains only one direction
-# 		if arr_length == 1:
-# 			return arr
-
-# 		elif i+1 < arr_length-1:
-# 			if are_opposites(arr[i], arr[i+1])
-# 				opposite_check_true += 1
-
-# 				if i+2 < arr_length-1:
-# 					i += 2
-
-# 			else:
-# 				new_arr.append(arr[i], arr[i+1])
-# 				if i == arr_length-1:
-# 					# We must reset the array index until we are sure no more operations can be performed
-# 					if opposite_check_true == 0:
-# 						solved = True
-# 					else: 
-
-# 			return new_arr
-
 ## [N][S][E][W][N][ ]
 ##	0  	  2     0
 ## If zero modifications have been made to list, the answer is correct
@@ -116,23 +80,6 @@ if b in a:
 else:
 	print("FALSE SIR")
 
-
-# def compareDir(dir1, dir2):
-# 	if dir1 == "NORTH"
-# 		if dir2 == "SOUTH"
-# 			return "NO"
-# 		if dir2 not in {'NORTH', 'EAST', 'WEST'}
-# 	elif dir1 == "SOUTH"
-# 		if dir2 == "NORTH"
-# 			return "NO"
-# 		if dir2 not in {'SOUTH', 'EAST', 'WEST'}
-
-# 	elif dir1 == "NORTH"
-# 		if dir2 == "SOUTH"
-# 			return "NO"
-# 	elif dir1 == "NORTH"
-# 		if dir2 == "SOUTH"
-# 			return "NO"
 
 
 
