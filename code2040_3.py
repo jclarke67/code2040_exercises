@@ -27,32 +27,82 @@ def are_opposites(dir1, dir2):
 		directions.remove('EAST')
 		return True if dir2 not in directions else False
 
-
 def dirReduc(arr):
-	output = ""
+	# output = ""
 	# solved = None
 	i = 0
+	new_arr = []
+	solved = False
+	arr_length = len(arr)
+	opposite_check_true = 0
 
 	# While zero modifications have been made to current instance of list
-	while check != 0:
-		if i == len(arr)-1
-		check = 0
+	while solved == False:
+		
+		# If loop has reached end of array
+		if i == arr_length-1:
+			return new_arr
+		
 		# If array contains only one direction
-
-		if len(arr) == 1:
+		if arr_length == 1:
 			return arr
 
-		elif i+1 < len(arr):
+		# If next direction is not beyond the end of the list
+		## [N][S][E][W][N]
+		elif i+1 < arr_length-1:
 			if are_opposites(arr[i], arr[i+1])
-				output += ""
-				check += 0
-				i += 2
+				arr.remove(i)  ## [S][E][W][N]
+				arr.remove(i)  ## [E][W][N]	
+				opposite_check_true += 1
 
 			else:
-				solved = True
-			output += new_addition
-			return output
+				new_arr.append(arr[i], arr[i+1])
+				if i == arr_length-1:
+					# We must reset the array index until we are sure no more operations can be performed
+					if opposite_check_true == 0:
+						solved = True
+					else: 
+						i = 0
+	return arr
 
+# def dirReduc(arr):
+# 	output = ""
+# 	# solved = None
+# 	i = 0
+# 	arr_length = len(arr)
+# 	new_arr = []
+# 	solved = False
+# 	opposite_check_true = 0
+
+# 	# While zero modifications have been made to current instance of list
+# 	while solved == False:
+# 		# If loop has reached end of array
+# 		if i == arr_length-1:
+# 			return new_arr
+		
+# 		# If array contains only one direction
+# 		if arr_length == 1:
+# 			return arr
+
+# 		elif i+1 < arr_length-1:
+# 			if are_opposites(arr[i], arr[i+1])
+# 				opposite_check_true += 1
+
+# 				if i+2 < arr_length-1:
+# 					i += 2
+
+# 			else:
+# 				new_arr.append(arr[i], arr[i+1])
+# 				if i == arr_length-1:
+# 					# We must reset the array index until we are sure no more operations can be performed
+# 					if opposite_check_true == 0:
+# 						solved = True
+# 					else: 
+
+# 			return new_arr
+
+## [N][S][E][W][N][ ]
+##	0  	  2     0
 ## If zero modifications have been made to list, the answer is correct
 
 print(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]))
