@@ -27,18 +27,30 @@ def are_opposites(dir1, dir2):
 		directions.remove('EAST')
 		return True if dir2 not in directions else False
 
+
+def checkDirs(arr, index, check):
+	if are_opposites(arr[index], arr[index+1]):
+		del arr[index] # [S][E][W][N]
+		del arr[index] # [E][W][N]	
+		check = True
+
+	else:
+		if index == len(arr)-1:
+			# We must reset the array index until we are sure no more operations can be performed
+			if check:
+				solved = True
+			else: 
+				i = 0
+		else:
+			i += 1
+
 def dirReduc(arr):
-	# output = ""
-	# solved = None
 	i = 0
-	new_arr = []
 	solved = False
-	arr_length = 0
 	opposite_check_true = 0
 
 	# While zero modifications have been made to current instance of list
 	while solved == False:
-		arr_length = len(arr)-1
 		# print(arr)
 		# print(arr[i])
 
@@ -57,44 +69,36 @@ def dirReduc(arr):
 		# [N][S][E][W][N]
 		# If next direction is not beyond the end of the list
 		elif i+1 < len(arr)-1:
-			# print("NEXT 2: " + str(arr[i+1]))
 			if are_opposites(arr[i], arr[i+1]):
 				del arr[i] # [S][E][W][N]
 				del arr[i] # [E][W][N]	
 				opposite_check_true = True
 
 			else:
-				# print("AT END")
 				if i == len(arr)-1:
 					# We must reset the array index until we are sure no more operations can be performed
 					if opposite_check_true:
 						solved = True
 					else: 
-						# print("RESET")
 						i = 0
 				else:
-					# print("ADD 1")
 					i += 1
 
 		# [S][N][W]
 		elif i+1 == len(arr)-1:
-			# print("B NEXT 2: " + str(arr[i+1]))
 			if are_opposites(arr[i], arr[i+1]):
 				del arr[i] # [N][W]
 				del arr[i] # [W]	
 				opposite_check_true = True
 
 			else:
-				# print("B AT END")
 				if i == len(arr)-1:
 					# We must reset the array index until we are sure no more operations can be performed
 					if opposite_check_true:
 						solved = True
 					else: 
-						# print("B RESET")
 						i = 0
 				else:
-					# print("B ADD 1")
 					i += 1			
 
 	return arr
